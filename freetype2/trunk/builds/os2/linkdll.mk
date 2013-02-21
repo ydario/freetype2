@@ -33,19 +33,15 @@ ifdef BUILD_PROJECT
   # This final rule is used to link all object files into a single library.
   # this is compiler-specific
   #
-  $(PROJECT_LIBRARY): $(OBJECTS_LIST) $(OBJ_DIR)/$(OS2DLLNAME).dll
+  $(PROJECT_LIBRARY): $(OBJECTS_LIST) $(OBJ_DIR)/$(OS2DLLNAME)
 
 
-$(OBJ_DIR)/$(OS2DLLNAME).dll: $(OBJECTS_LIST)
+$(OBJ_DIR)/$(OS2DLLNAME): $(OBJECTS_LIST)
 	rm -f $(OBJ_DIR)/$(PROJECT).a
 	ar cru $(OBJ_DIR)/$(PROJECT)_s.a $(OBJECTS_LIST)
-	echo "LIBRARY $(OS2DLLNAME) INITINSTANCE TERMINSTANCE" > $(OBJ_DIR)/$(OS2DLLNAME).def
-	echo "DATA MULTIPLE" >> $(OBJ_DIR)/$(OS2DLLNAME).def
-	echo "EXPORTS" >> $(OBJ_DIR)/$(OS2DLLNAME).def
-	emxexp $(OBJECTS_LIST) >> $(OBJ_DIR)/$(OS2DLLNAME).def
-	gcc -g -Zbin-files -Zhigh-mem -Zomf -Zdll $(OBJ_DIR)/$(OS2DLLNAME).def -o $@ $(OBJECTS_LIST) 
-	emximp -o $(OBJ_DIR)/$(PROJECT).a $(OBJ_DIR)/$(OS2DLLNAME).def
-	emximp -o $(OBJ_DIR)/$(PROJECT).lib $(OBJ_DIR)/$(OS2DLLNAME).def
+	gcc -g -Zbin-files -Zhigh-mem -Zomf -Zmap -Zdll $(EXPORTS_LIST) -o $@ $(OBJECTS_LIST) 
+	emximp -o $(OBJ_DIR)/$(PROJECT).a $(EXPORTS_LIST)
+	emximp -o $(OBJ_DIR)/$(PROJECT).lib $(EXPORTS_LIST)
 #	cp $@ $(OBJ_DIR)
 
 endif
