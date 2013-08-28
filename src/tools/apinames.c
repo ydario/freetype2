@@ -32,7 +32,7 @@ typedef enum  OutputFormat_
   OUTPUT_WINDOWS_DEF,   /* output a Windows .DEF file for Visual C++ or Mingw */
   OUTPUT_BORLAND_DEF,   /* output a Windows .DEF file for Borland C++         */
   OUTPUT_WATCOM_LBC,    /* output a Watcom Linker Command File                */
-  OUTPUT_OS2_DEF,       /* output a OS2 .DEF file for GCC                     */
+  OUTPUT_OS2_DEF,       /* output an OS/2 .DEF file for GCC                   */
   OUTPUT_NETWARE_IMP    /* output a NetWare ImportFile                        */
 
 } OutputFormat;
@@ -361,7 +361,7 @@ usage( void )
    "           -w     : output .DEF file for Visual C++ and Mingw\n"
    "           -wB    : output .DEF file for Borland C++\n"
    "           -wW    : output Watcom Linker Response File\n"
-   "           -wO    : output OS2 .DEF file for GCC\n"
+   "           -wO    : output OS/2 .DEF file for GCC\n"
    "           -wN    : output NetWare Import File\n"
    "\n";
 
@@ -453,6 +453,7 @@ int  main( int argc, const char* const*  argv )
           case 'O':
           case 'o':
             format = OUTPUT_OS2_DEF;
+            break;
 
           case 0:
             break;
