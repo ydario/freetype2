@@ -11,10 +11,15 @@
 # LICENSE.TXT.  By continuing to use, modify, or distribute this file you
 # indicate that you have read the license and understand and accept it
 # fully.
-
 # We need these declarations here since unix-def.mk is a generated file.
 BUILD_DIR := $(TOP_DIR)/builds/unix
+
+OS_TEST := $(shell uname -s)
+ifeq ($(OS_TEST), OS/2)
+PLATFORM  := os2
+else
 PLATFORM  := unix
+endif
 
 have_mk := $(wildcard $(OBJ_DIR)/unix-def.mk)
 ifneq ($(have_mk),)
