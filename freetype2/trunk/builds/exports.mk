@@ -45,7 +45,6 @@ ifneq ($(EXPORTS_LIST),)
   ifneq ($(ftmac_c),)
     PUBLIC_HEADERS += $(PUBLIC_DIR)/ftmac.h
   endif
-endif
 
   # The `apinames' source and executable.  We use $E_BUILD as the host
   # executable suffix, which *includes* the final dot.
