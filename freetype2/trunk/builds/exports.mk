@@ -40,11 +40,11 @@ ifneq ($(EXPORTS_LIST),)
   endif
 
   # The list of public headers we're going to parse.
-ifeq ($(PLATFORM),os2)
-  PUBLIC_HEADERS1 := $(wildcard $(PUBLIC_DIR)/*.h)
-  PUBLIC_HEADERS = $(filter-out $(PUBLIC_DIR)/ftmac.h, $(PUBLIC_HEADERS1))
-else
-  PUBLIC_HEADERS := $(wildcard $(PUBLIC_DIR)/*.h)
+  PUBLIC_HEADERS := $(filter-out $(PUBLIC_DIR)/ftmac.h, \
+                                 $(wildcard $(PUBLIC_DIR)/*.h))
+  ifneq ($(ftmac_c),)
+    PUBLIC_HEADERS += $(PUBLIC_DIR)/ftmac.h
+  endif
 endif
 
   # The `apinames' source and executable.  We use $E_BUILD as the host
