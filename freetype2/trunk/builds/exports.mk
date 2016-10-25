@@ -66,13 +66,8 @@ ifneq ($(EXPORTS_LIST),)
   #
   $(EXPORTS_LIST): $(APINAMES_EXE) $(PUBLIC_HEADERS)
 	  $(subst /,$(SEP),$(APINAMES_EXE)) -o$@ $(APINAMES_OPTIONS) $(PUBLIC_HEADERS)
-ifeq ($(PLATFORM),os2)
-	  @echo '  _TT_New_Context' >> $(EXPORTS_LIST)
-	  @echo '  _TT_RunIns' >> $(EXPORTS_LIST)
-else
- 	  @echo TT_New_Context >> $(EXPORTS_LIST)
- 	  @echo TT_RunIns >> $(EXPORTS_LIST)
-endif
+	  @echo TT_New_Context >> $(EXPORTS_LIST)
+	  @echo TT_RunIns >> $(EXPORTS_LIST)
 
   $(PROJECT_LIBRARY): $(EXPORTS_LIST)
 
