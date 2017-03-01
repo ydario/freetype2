@@ -59,6 +59,7 @@ datadir      := @datadir@
 mandir       := @mandir@
 
 version_info := @version_info@
+VERSION      := @PACKAGE_VERSION@
 
 # Variables needed for `freetype-config' and `freetype.pc'.
 #
