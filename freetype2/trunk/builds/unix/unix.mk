@@ -17,6 +17,9 @@ BUILD_DIR := $(TOP_DIR)/builds/unix
 OS_TEST := $(shell uname -s)
 ifeq ($(OS_TEST), OS/2)
 PLATFORM  := os2
+VENDOR ?=community
+BUILD_INFO=\#\#1\#\# $(shell date +'%d %b %Y %H:%M:%S')     $(shell uname -n)
+BUILDLEVEL_INFO=@\#$(VENDOR):$(VERSION)\#@$(BUILD_INFO)::::0::
 else
 PLATFORM  := unix
 endif
